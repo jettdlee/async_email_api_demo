@@ -13,11 +13,12 @@
 ActiveRecord::Schema[7.2].define(version: 2025_06_08_131048) do
   create_table "uploads", force: :cascade do |t|
     t.string "upload_id"
-    t.integer "total_records"
-    t.integer "processed_records"
-    t.integer "failed_records"
-    t.json "details"
+    t.integer "total_records", default: 0
+    t.integer "processed_records", default: 0
+    t.integer "failed_records", default: 0
+    t.json "details", default: []
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["upload_id"], name: "index_uploads_on_upload_id", unique: true
   end
 end
