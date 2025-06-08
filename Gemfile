@@ -36,3 +36,10 @@ group :development, :test do
 end
 
 
+
+gem "sidekiq", "~> 7.3"
+gem "redis", "~> 5.4"
+gem "rack-attack", "~> 6.7"
+
+gem "rspec-rails", "~> 8.0", :group => :development
+gem "test", "~> 1.0", :group => :development
