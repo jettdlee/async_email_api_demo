@@ -1,0 +1,7 @@
+name,email
+Bad One,notanemail
+Missing At,noatsign.com
+Symbols,#$%&*!
+Empty,
+Just At,@
+Spaces,user @ domain . com

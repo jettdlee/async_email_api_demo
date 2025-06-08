@@ -1,1 +1,4 @@
 :concurrency: 5
+:queues:
+  - [user_validation, 1]
+  - default
