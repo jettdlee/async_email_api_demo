@@ -1,3 +1,4 @@
+require 'CSV'
 class ProcessCsvFileJob < ApplicationJob
   def perform(upload_id, file_path)
     upload = Upload.find(upload_id)
@@ -6,7 +7,7 @@ class ProcessCsvFileJob < ApplicationJob
     file.open do |f|
       CSV.foreach(f, headers: true) do |row|
         upload.increment!(:total_records)
-        EmailValidationJob.perform_later(upload.id, row.to_h)
+        UserValidationJob.perform_later(upload.id, row.to_h)
       end
     end
   end
