@@ -6,7 +6,10 @@ class UploadsController < ApplicationController
     end
 
     upload = Upload.create!(upload_id: SecureRandom.uuid)
+    upload.file.attach(file)
+
     ProcessCsvFileJob.perform_later(upload.id, file.tempfile.path)
+
     render json: { uploadId: upload.upload_id, message: 'File uploaded successfully. Processing started.' }, status: :accepted
   end
 

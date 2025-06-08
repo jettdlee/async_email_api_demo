@@ -2,6 +2,8 @@ class Upload < ApplicationRecord
   include ActiveModel::Serializers::JSON
   attr_accessor :upload_id, :total_records, :processed_records, :failed_records, :details
 
+  has_one_attached :file
+
   def attributes
     {
       "uploadId": upload_id,
