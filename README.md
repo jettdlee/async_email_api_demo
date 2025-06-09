@@ -24,6 +24,8 @@ A lightweight Ruby on Rails API that demonstrates asynchronous email delivery us
 
 ## 🚀 Setup
 
+Devcontainers are availible for setup on VSCode. Will require Docker installation. Continue for local installation.
+
 ### 1. Clone the repository
 
 ```bash
