@@ -5,8 +5,10 @@ class User
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   def validate
-    sleep(0.1)
-    valid?
+    Concurrent::Promises.future do
+      sleep(0.1)
+      valid?
+    end
   end
 
   def error

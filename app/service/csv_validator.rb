@@ -11,6 +11,10 @@ class CsvValidator
   def validate!
     raise MissingFileError, "Missing file" if @file.nil?
 
+    unless [".csv"].include?(File.extname(@file.original_filename).downcase)
+      raise ValidationError, "Invalid file format. Only CSV files are allowed."
+    end
+
     begin
       csv = CSV.read(@file.tempfile, headers: true)
     rescue CSV::MalformedCSVError => e
@@ -27,4 +31,3 @@ class CsvValidator
     true
   end
 end
-
