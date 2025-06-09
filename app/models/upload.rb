@@ -1,23 +1,20 @@
 class Upload < ApplicationRecord
-  include ActiveModel::Serializers::JSON
-
   has_one_attached :file
 
-  def attributes
-    {
-      "uploadId": upload_id,
-      "progress": progress,
-      "totalRecords": total_records,
-      "processedRecords": processed_records,
-      "failedRecords": failed_records,
-      "details": details
-    }
+  def redis_key
+    "upload:#{self.id}"
   end
 
-  private
-
   def progress
-    percent = (processed_records.to_f / total_records * 100).to_i
-    "#{percent}%"
+    return 0 if progress_cache["totalRecords"].to_f.zero?
+    (progress_cache["processedRecords"].to_f / progress_cache["totalRecords"].to_f * 100).to_i
+  end
+
+  def progress_cache
+    REDIS.hgetall("#{self.redis_key}:progress")
+  end
+
+  def errors_cache
+    REDIS.lrange("#{self.redis_key}:errors", 0, -1).map { |e| JSON.parse(e) }
   end
 end

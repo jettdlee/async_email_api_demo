@@ -1,21 +1,15 @@
 class UploadsController < ApplicationController
   def create
     file = params[:file]
-    unless file
-      return render json: { error: "No file Uploaded" }, status: :bad_request
+    begin
+      CsvValidator.new(file).validate!
+    rescue CsvValidator::MissingFileError => e
+      return render json: { error: e.message }, status: :bad_request
+    rescue CsvValidator::ValidationError => e
+      return render json: { error: e.message }, status: :unprocessable_entity
     end
 
-    upload = Upload.create!(upload_id: SecureRandom.uuid)
-    upload.file.attach(file)
-
-    ProcessCsvFileJob.perform_later(upload.id, file.tempfile.path)
-
-    render json: { uploadId: upload.upload_id, message: 'File uploaded successfully. Processing started.' }, status: :accepted
-  end
-
-  private
-
-  def upload_params
-    params.require(:file)
+    upload = ProcessCsvService.new(file).call
+    render json: { uploadId: upload.id, message: 'File uploaded successfully. Processing started.' }, status: :accepted
   end
 end
