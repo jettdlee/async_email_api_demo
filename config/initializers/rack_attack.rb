@@ -5,7 +5,7 @@ class Rack::Attack
     end
   end
 
-  self.throttled_response = ->(_env) {
+  self.throttled_responder = ->(_env) {
     [ 429, { "Content-Type" => "application/json" }, [ { error: "Rate limit exceeded" }.to_json ] ]
   }
 end

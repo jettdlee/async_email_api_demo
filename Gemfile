@@ -45,3 +45,4 @@ gem "rspec-rails", "~> 8.0", group: :development
 gem "test", "~> 1.0", group: :development
 gem "activestorage"
 gem "active_model_serializers", "~> 0.10.0"
+gem "csv"
