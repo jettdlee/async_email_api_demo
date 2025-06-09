@@ -1,3 +1,5 @@
+require 'csv'
+
 class CsvValidator
   class MissingFileError < StandardError; end
   class ValidationError < StandardError; end

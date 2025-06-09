@@ -4,4 +4,4 @@ local:
 
 test:
   service: Disk
-  root: <%= Rails.root.join("tmp/storage_test") %>
+  root: <%= Rails.root.join("tmp/storage") %>

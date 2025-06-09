@@ -61,6 +61,25 @@ RSpec.describe UploadsController, type: :request do
         expect(response.parsed_body["message"]).to eq("File uploaded successfully. Processing started.")
       end
     end
+
+    context "test rate limit" do
+      before { Rack::Attack.cache.store = ActiveSupport::Cache::MemoryStore.new }
+
+      it "allows up to 10 requests" do
+        10.times do
+          post "/upload", params: { file: valid_file }
+          expect(response).to have_http_status(:accepted)
+        end
+      end
+
+      it "blocks the 11th request with 429 Too Many Requests" do
+        10.times { post "/upload", params: { file: valid_file } }
+
+        post "/upload", params: { file: valid_file }
+        expect(response).to have_http_status(:too_many_requests)
+        expect(response.body).to include("Rate limit exceeded")
+      end
+    end
   end
 end
 
