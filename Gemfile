@@ -44,3 +44,4 @@ gem "rack-attack", "~> 6.7"
 gem "rspec-rails", "~> 8.0", :group => :development
 gem "test", "~> 1.0", :group => :development
 gem "activestorage"
+gem 'active_model_serializers', '~> 0.10.0'
