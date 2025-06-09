@@ -18,4 +18,3 @@ RSpec.describe Upload, type: :model do
     end
   end
 end
-

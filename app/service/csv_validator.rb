@@ -1,4 +1,4 @@
-require 'csv'
+require "csv"
 
 class CsvValidator
   class MissingFileError < StandardError; end
@@ -11,7 +11,7 @@ class CsvValidator
   def validate!
     raise MissingFileError, "Missing file" if @file.nil?
 
-    unless [".csv"].include?(File.extname(@file.original_filename).downcase)
+    unless [ ".csv" ].include?(File.extname(@file.original_filename).downcase)
       raise ValidationError, "Invalid file format. Only CSV files are allowed."
     end
 

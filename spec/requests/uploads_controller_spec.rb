@@ -82,4 +82,3 @@ RSpec.describe UploadsController, type: :request do
     end
   end
 end
-

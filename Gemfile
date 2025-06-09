@@ -32,7 +32,7 @@ group :development, :test do
   gem "brakeman", require: false
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  # gem "rubocop-rails-omakase", require: false
+  gem "rubocop-rails-omakase", require: false
 end
 
 
@@ -41,7 +41,7 @@ gem "sidekiq", "~> 7.3"
 gem "redis", "~> 5.4"
 gem "rack-attack", "~> 6.7"
 
-gem "rspec-rails", "~> 8.0", :group => :development
-gem "test", "~> 1.0", :group => :development
+gem "rspec-rails", "~> 8.0", group: :development
+gem "test", "~> 1.0", group: :development
 gem "activestorage"
-gem 'active_model_serializers', '~> 0.10.0'
+gem "active_model_serializers", "~> 0.10.0"

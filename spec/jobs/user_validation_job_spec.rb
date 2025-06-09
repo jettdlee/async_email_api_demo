@@ -45,4 +45,3 @@ RSpec.describe UserValidationJob, type: :job do
     end
   end
 end
-

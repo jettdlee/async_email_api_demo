@@ -10,6 +10,6 @@ class UploadsController < ApplicationController
     end
 
     upload = ProcessCsvService.new(file).call
-    render json: { uploadId: upload.id, message: 'File uploaded successfully. Processing started.' }, status: :accepted
+    render json: { uploadId: upload.id, message: "File uploaded successfully. Processing started." }, status: :accepted
   end
 end

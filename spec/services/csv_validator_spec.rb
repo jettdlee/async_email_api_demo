@@ -46,4 +46,3 @@ RSpec.describe CsvValidator do
     end
   end
 end
-

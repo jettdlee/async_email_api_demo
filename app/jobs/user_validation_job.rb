@@ -4,7 +4,7 @@ class UserValidationJob < ApplicationJob
   def perform(upload_id, data)
     upload = Upload.find(upload_id)
     return unless data
-    user = User.new(name: data['name'], email: data['email'])
+    user = User.new(name: data["name"], email: data["email"])
     unless user.validate.value
       error_details = {
         name: user.name,
