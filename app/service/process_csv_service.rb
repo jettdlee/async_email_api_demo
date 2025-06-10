@@ -1,4 +1,4 @@
-require "csv"
+require "CSV"
 class ProcessCsvService
   def initialize(file)
     @file = file
