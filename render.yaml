@@ -1,0 +1,22 @@
+databases:
+  - name: async_email_api_demo
+    databaseName: async_email_api_demo
+    user: async_email_api_demo
+    plan: free
+
+services:
+  - type: web
+    name: async_email_api_demo
+    runtime: ruby
+    plan: free
+    buildCommand: './bin/render-build.sh'
+    startCommand: 'bundle exec rails server'
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: async_email_api_demo
+          property: connectionString
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: WEB_CONCURRENCY
+        value: 5
