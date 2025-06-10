@@ -36,7 +36,7 @@ group :development, :test do
 end
 
 
-gem "nokogiri", force_ruby_platform: true
+
 gem "sidekiq", "~> 7.3"
 gem "redis", "~> 5.4"
 gem "rack-attack", "~> 6.7"
